@@ -1,5 +1,7 @@
-#include <iostream>
+#include "core/app.h"
+
 int main() {
-  std::cout<<"chess"<<std::endl;
+  Application app;
+  app.mainLoop();
   return 0;
 }

@@ -7,6 +7,7 @@ find_package(SDL3 REQUIRED)
 
 add_executable(chess
     src/main.cpp
+    src/core/app.cpp
 )
 
 target_link_libraries(chess PRIVATE SDL3::SDL3)

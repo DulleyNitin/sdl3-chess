@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.20)
+project(SDL3Chess)
+
+set(CMAKE_CXX_STANDARD 17)
+
+find_package(SDL3 REQUIRED)
+
+add_executable(chess
+    src/main.cpp
+)
+
+target_link_libraries(chess PRIVATE SDL3::SDL3)
+

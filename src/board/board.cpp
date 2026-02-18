@@ -22,3 +22,7 @@ point Board::getWorldPostion(int row, int col) {
   return mBoard.gridToWorld(row, col);
 }
 
+point Board::getGridPosition(int x, int y) {
+  return mBoard.worldToGrid(x, y);
+}
+

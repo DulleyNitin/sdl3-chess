@@ -16,6 +16,7 @@ public:
   int getCols();
   int getCellSize();
   point getWorldPostion(int, int);
+  point getGridPosition(int, int);
 };
 
 #endif 

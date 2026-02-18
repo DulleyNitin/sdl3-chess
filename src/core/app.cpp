@@ -6,6 +6,7 @@
 #include <SDL3/SDL_pixels.h>
 #include <SDL3/SDL_render.h>
 #include <SDL3/SDL_timer.h>
+#include <SDL3/SDL_mouse.h>
 
 Application::Application() 
   : mBoardRenderer()
@@ -46,6 +47,9 @@ void Application::update() {
     if(event.type == SDL_EVENT_QUIT) {
       mRunning = false;
     }
+    float x, y;
+    SDL_MouseButtonFlags mouse = SDL_GetMouseState(&x, &y);
+    SDL_Log("x: %f, y: %f", x, y);
   }
 }
 

@@ -1,4 +1,5 @@
 #include "app.h"
+#include "../utils/point.h"
 
 #include <SDL3/SDL_events.h>
 #include <SDL3/SDL_init.h>
@@ -6,10 +7,12 @@
 #include <SDL3/SDL_pixels.h>
 #include <SDL3/SDL_render.h>
 #include <SDL3/SDL_timer.h>
-#include <SDL3/SDL_mouse.h>
 
 Application::Application() 
-  : mBoardRenderer()
+  : mBoardRenderer(),
+    mInputHandler(),
+    mChessBoard(8, 8, 100)
+
 {
   mRunning = true;
   if(!SDL_Init(SDL_INIT_VIDEO)) {
@@ -38,25 +41,30 @@ Application::~Application() {
 }
 
 void Application::input() {
-
-}
-
-void Application::update() {
   SDL_Event event;
   while(SDL_PollEvent(&event)) {
     if(event.type == SDL_EVENT_QUIT) {
       mRunning = false;
     }
-    float x, y;
-    SDL_MouseButtonFlags mouse = SDL_GetMouseState(&x, &y);
-    SDL_Log("x: %f, y: %f", x, y);
+
+    Point pos = mInputHandler.poll(event);
+    float logicalX, logicalY;
+    //since the renderer is logical represented in LETTERBOX so getting direct coordinates of mouse from window 
+    //doesnot apply well with the world to grid coordinates conversion so we get coordinates from renderer
+    SDL_RenderCoordinatesFromWindow(mRenderer, static_cast<float>(pos.x), static_cast<float>(pos.y), &logicalX, &logicalY);
+    Point gridPos = mChessBoard.getGridPosition(logicalX, logicalY);
+    mChessBoard.setSelect(gridPos.x, gridPos.y);
   }
+}
+
+void Application::update() {
+
 }
 
 void Application::render() {
   SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
   SDL_RenderClear(mRenderer);
-  mBoardRenderer.drawBoard(mRenderer);
+  mBoardRenderer.drawBoard(mRenderer, &mChessBoard);
   SDL_RenderPresent(mRenderer);
 }
 

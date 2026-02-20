@@ -11,12 +11,15 @@ private:
   int mCellSize;
   Grid<int> mBoard;
 public:
+  int mClickedRow;
+  int mClickedCol;
   Board(int, int, int);
   int getRows();
   int getCols();
   int getCellSize();
-  point getWorldPostion(int, int);
-  point getGridPosition(int, int);
+  Point getWorldPostion(int, int);
+  Point getGridPosition(int, int);
+  void setSelect(int, int);
 };
 
 #endif 

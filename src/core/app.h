@@ -5,6 +5,8 @@
 #include <SDL3/SDL_render.h>
 
 #include "../rendering/boardRenderer.h"
+#include "../input/inputHandler.h"
+#include "../board/board.h"
 
 class Application {
 private:
@@ -13,6 +15,8 @@ public:
   SDL_Window *mWindow;
   SDL_Renderer *mRenderer;
   BoardRenderer mBoardRenderer;
+  InputHandler mInputHandler;
+  Board mChessBoard;
   Application();
   ~Application();
   void input();

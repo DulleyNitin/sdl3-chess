@@ -2,12 +2,9 @@
 #define GRID_H
 
 #include <vector>
-#pragma once
 
-struct point {
-  int x;
-  int y;
-};
+#include "../utils/point.h"
+#pragma once
 
 template<typename T> class Grid { //using templates so that this grid system can be reused for future projects....
 private:
@@ -52,15 +49,15 @@ public:
   const int getCellSize() const{
     return mCellSize;
   }
-  const point gridToWorld(int row, int col) const{//to translate the grid coordinates to pixel positions
+  const Point gridToWorld(int row, int col) const{//to translate the grid coordinates to pixel positions
     int x = col*mCellSize;
     int y = row*mCellSize;
-    return point{x, y};
+    return Point{x, y};
   }
-  const point worldToGrid(int x, int y) const{//to translate the pixel positions to grid coordinates
+  const Point worldToGrid(int x, int y) const{//to translate the pixel positions to grid coordinates
     int row = y/mCellSize;
     int col = x/mCellSize;
-    return point{row, col};
+    return Point{row, col};
   }
 };
 

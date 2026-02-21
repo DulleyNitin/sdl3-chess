@@ -5,14 +5,10 @@
 #include <SDL3/SDL_render.h>
 
 class BoardRenderer {
-private:
-  Board mChessBoard;
-  int mChessBoardRows; // contains the number of the rows and coloms in the board
-  int mChessBoardCols;
 public:
   BoardRenderer();
   ~BoardRenderer();
-  void drawBoard(SDL_Renderer*);
+  void drawBoard(SDL_Renderer*, Board*);
 };
 
 #endif 

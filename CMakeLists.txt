@@ -10,6 +10,7 @@ add_executable(chess
     src/core/app.cpp
     src/board/board.cpp
     src/rendering/boardRenderer.cpp
+    src/input/inputHandler.cpp
 )
 
 target_link_libraries(chess PRIVATE SDL3::SDL3)
